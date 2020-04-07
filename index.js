@@ -7,9 +7,14 @@ function getTime() {
     var d = new Date();
     var hour = d.getUTCHours() + timezone;
     let dt;
-    if (hour > 24) {
-        hour = hour - 24;
-        dt = 'AM';
+    if (hour >= 24) {
+        if (hour == 24) {
+            hour = 12;
+            dt = 'AM';
+        } else {
+            hour = hour - 24;
+            dt = 'AM';
+        }
     } else if (hour >= 12) {
         dt = 'PM';
         if (hour > 12) {
@@ -27,9 +32,7 @@ function getTime() {
     if (minute < 10) {
         minute = '0' + minute.toString();
     }
-    document.getElementById(
-        'time'
-    ).innerHTML = `Current Time: ${hour}:${minute} ${dt} (Location Based)`;
+    document.getElementById('time').innerHTML = `Current Time: ${hour}:${minute} ${dt} (Location Based)`;
 }
 
 //Get hour
@@ -47,68 +50,48 @@ function getHour() {
 function loadLocation() {
     let apiKey = '1e77fb69d26c242a76402146e8484da8';
     let location;
-    if (
-        localStorage.getItem('city') != undefined ||
-        localStorage.getItem('state') != undefined
-    ) {
-        location =
-            localStorage.getItem('city') + ', ' + localStorage.getItem('state');
+    if (localStorage.getItem('city') != undefined || localStorage.getItem('state') != undefined) {
+        location = localStorage.getItem('city') + ', ' + localStorage.getItem('state');
     } else {
         location = 'Toronto, Ontario ';
     }
-    document.getElementById('location').innerHTML =
-        'Location:  ' + location + ' ';
+    document.getElementById('location').innerHTML = 'Location:  ' + location + ' ';
     let temperature, prediction;
-    fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`
-    ).then((response) => {
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}`).then((response) => {
         response.json().then((data) => {
             if (response.status != 404) {
                 sessionStorage.setItem('timezone', data.timezone);
                 temperature = data.main.temp;
                 prediction = data.weather[0].main;
-                document.getElementById('temperature').innerHTML =
-                    'Temperature:  ' + Math.round(temperature - 273.15) + '°C';
-                document.getElementById('prediction').innerHTML =
-                    'Prediction:  ' + prediction;
+                document.getElementById('temperature').innerHTML = 'Temperature:  ' + Math.round(temperature - 273.15) + '°C';
+                document.getElementById('prediction').innerHTML = 'Prediction:  ' + prediction;
                 switch (prediction) {
                     case 'Sunny':
                     case 'Clear':
-                        if (
-                            getHour(data.timezone) <= '6' ||
-                            getHour(data.timezone) >= '18'
-                        ) {
-                            document.getElementById('weather-icon').src =
-                                'moon.gif';
+                        if (getHour(data.timezone) <= '6' || getHour(data.timezone) >= '18') {
+                            document.getElementById('weather-icon').src = 'moon.gif';
                         } else {
-                            document.getElementById('weather-icon').src =
-                                'sunny.png';
+                            document.getElementById('weather-icon').src = 'sunny.png';
                         }
                         break;
                     case 'Clouds':
-                        document.getElementById('weather-icon').src =
-                            'cloudy.png';
+                        document.getElementById('weather-icon').src = 'cloudy.png';
                         break;
                     case 'Rain':
-                        document.getElementById('weather-icon').src =
-                            'raining.png';
+                        document.getElementById('weather-icon').src = 'raining.png';
                         break;
                     case 'Snow':
-                        document.getElementById('weather-icon').src =
-                            'snowing.png';
+                        document.getElementById('weather-icon').src = 'snowing.png';
                         break;
                     case 'Mist':
-                        document.getElementById('weather-icon').src =
-                            'mist   .png';
+                        document.getElementById('weather-icon').src = 'mist   .png';
                         break;
                 }
             } else {
                 temperature = 'N/A';
                 prediction = 'N/A';
-                document.getElementById('temperature').innerHTML =
-                    'Temperature:  ' + temperature;
-                document.getElementById('prediction').innerHTML =
-                    'Prediction:  ' + prediction;
+                document.getElementById('temperature').innerHTML = 'Temperature:  ' + temperature;
+                document.getElementById('prediction').innerHTML = 'Prediction:  ' + prediction;
                 document.getElementById('weather-icon').src = 'error.png';
             }
         });
@@ -132,29 +115,25 @@ function setLocation(city, state) {
 //Switch background colors
 document.getElementById('first-button').addEventListener('click', (e) => {
     e.preventDefault();
-    document.getElementsByTagName('body')[0].style.background =
-        'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540)';
+    document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540)';
     setTheme(1);
 });
 
 document.getElementById('second-button').addEventListener('click', (e) => {
     e.preventDefault();
-    document.getElementsByTagName('body')[0].style.background =
-        'linear-gradient(#325d79, #9bd7d1, #efeeee, #f9a26c, #f26627)';
+    document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#325d79, #9bd7d1, #efeeee, #f9a26c, #f26627)';
     setTheme(2);
 });
 
 document.getElementById('third-button').addEventListener('click', (e) => {
     e.preventDefault();
-    document.getElementsByTagName('body')[0].style.background =
-        'linear-gradient(#475c7a, #685d79, #ab6c82, #d8737f, #fcbb6d)';
+    document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#475c7a, #685d79, #ab6c82, #d8737f, #fcbb6d)';
     setTheme(3);
 });
 
 document.getElementById('fourth-button').addEventListener('click', (e) => {
     e.preventDefault();
-    document.getElementsByTagName('body')[0].style.background =
-        'linear-gradient(#305f72, #568ea6, #f1d1b5, #f0b7a4, #f18c8e)';
+    document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#305f72, #568ea6, #f1d1b5, #f0b7a4, #f18c8e)';
     setTheme(4);
 });
 
@@ -172,25 +151,20 @@ function loadTheme() {
         let body = document.getElementsByTagName('body')[0];
         switch (theme) {
             case '2':
-                body.style.background =
-                    'linear-gradient(#325d79, #9bd7d1, #efeeee, #f9a26c, #f26627)';
+                body.style.background = 'linear-gradient(#325d79, #9bd7d1, #efeeee, #f9a26c, #f26627)';
                 break;
             case '3':
-                body.style.background =
-                    'linear-gradient(#475c7a, #685d79, #ab6c82, #d8737f, #fcbb6d)';
+                body.style.background = 'linear-gradient(#475c7a, #685d79, #ab6c82, #d8737f, #fcbb6d)';
                 break;
             case '4':
-                body.style.background =
-                    'linear-gradient(#305f72, #568ea6, #f1d1b5, #f0b7a4, #f18c8e)';
+                body.style.background = 'linear-gradient(#305f72, #568ea6, #f1d1b5, #f0b7a4, #f18c8e)';
                 break;
             default:
-                body.style.background =
-                    'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540)';
+                body.style.background = 'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540)';
                 break;
         }
     } else {
-        document.getElementsByTagName('body')[0].style.background =
-            'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540)';
+        document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540)';
         localStorage.setItem('theme', 1);
     }
 }
