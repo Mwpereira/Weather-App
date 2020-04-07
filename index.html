@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="shortcut icon" href="weather.png" />
+        <link rel="stylesheet" href="index.css" />
+        <script src="index.js" defer></script>
+        <title>Mwp Weather</title>
+    </head>
+    <body>
+        <div class="title-content">
+            <div class="icon-column">
+                <img id="icon" src="weather.png" />
+            </div>
+            <div class="title-column">
+                <h1 id="weather">Mwp Weather</h1>
+            </div>
+        </div>
+        <div class="weather-icon-image">
+            <img id="weather-icon" />
+        </div>
+        <div class="main-content">
+            <span>
+                <p id="temperature">Temperature: 0°C</p>
+            </span>
+            <span>
+                <p id="prediction">Predication: Rainy</p>
+            </span>
+        </div>
+        <div class="bottom-content">
+            <div class="bubble-colors">
+                <button id="first-button"></button>
+                <button id="second-button"></button>
+                <button id="third-button"></button>
+                <button id="fourth-button"></button>
+            </div>
+            <div class="bottom-text">
+                <span>
+                    <p id="location">Location:</p>
+                    <img id="compass" src="compass.png" />
+                </span>
+                <p id="time">Current Time:</p>
+            </div>
+        </div>
+    </body>
+</html>

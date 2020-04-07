@@ -1,0 +1,124 @@
+* {
+    overflow: hidden;
+}
+
+.title-content {
+    padding: 3rem 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-content {
+    color: white;
+    font-size: 40px;
+    margin-top: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0.5rem 5rem;
+}
+
+.main-content > span {
+    display: flex;
+}
+
+.bottom-content {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.bubble-colors {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+button {
+    border-radius: 50%;
+    width: 35px;
+    height: 30px;
+    margin-right: 0.5rem;
+    border-color: black;
+    border-width: 2px;
+    cursor: pointer;
+    z-index: 99;
+}
+
+#first-button {
+    background: linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540)
+        no-repeat;
+}
+
+#second-button {
+    background: linear-gradient(#325d79, #9bd7d1, #efeeee, #f9a26c, #f26627)
+        no-repeat;
+}
+
+#third-button {
+    background: linear-gradient(#475c7a, #685d79, #ab6c82, #d8737f, #fcbb6d)
+        no-repeat;
+}
+
+#fourth-button {
+    background: linear-gradient(#305f72, #568ea6, #f1d1b5, #f0b7a4, #f18c8e)
+        no-repeat;
+}
+
+.bottom-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    left: -70px;
+}
+
+.bottom-text > span {
+    display: flex;
+}
+
+.weather-icon-image {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#weather {
+    color: white;
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 50px;
+    width: auto;
+    max-width: 400px;
+    text-align: center;
+}
+
+#weather-icon {
+    width: 250px;
+    height: 250px;
+}
+
+#icon {
+    font-size: 60px;
+    color: lightblue;
+    margin-top: 0rem;
+    width: 130px;
+    height: 130px;
+}
+
+#compass {
+    margin-top: 2.3rem;
+    width: 25px;
+    height: 25px;
+    margin-left: 1rem;
+    cursor: pointer;
+}
