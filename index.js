@@ -74,6 +74,9 @@ function loadLocation() {
                             document.getElementById('weather-icon').src = 'sunny.png';
                         }
                         break;
+                    case 'Thunderstorm':
+                        document.getElementById('weather-icon').src = 'thunderstorm.png';
+                        break;
                     case 'Clouds':
                         document.getElementById('weather-icon').src = 'cloudy.png';
                         break;
