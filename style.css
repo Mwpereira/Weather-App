@@ -1,0 +1,205 @@
+html {
+    background-origin: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    height: 100%;
+}
+
+img {
+    max-width: 100%;
+}
+
+.title-content {
+    padding: 3rem 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-content {
+    color: white;
+    font-size: 40px;
+    margin-top: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 0.5rem 5rem;
+}
+
+.main-content > span {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.bottom-content {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 5.5rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-text > span {
+    margin-bottom: 2rem;
+}
+
+.bubble-colors {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: left;
+    width: 100%;
+    margin-top: 5rem;
+    margin-left: 1rem;
+}
+
+button {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+    border-color: black;
+    border-width: 2px;
+    cursor: pointer;
+    z-index: 99;
+}
+
+#first-button {
+    background: linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540) no-repeat;
+}
+
+#second-button {
+    background: linear-gradient(#325d79, #9bd7d1, #efeeee, #f9a26c, #f26627) no-repeat;
+}
+
+#third-button {
+    background: linear-gradient(#475c7a, #685d79, #ab6c82, #d8737f, #fcbb6d) no-repeat;
+}
+
+#fourth-button {
+    background: linear-gradient(#305f72, #568ea6, #f1d1b5, #f0b7a4, #f18c8e) no-repeat;
+}
+
+.bottom-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.bottom-text > span {
+    display: flex;
+}
+
+.weather-icon-image {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#weather {
+    color: white;
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 45px;
+    min-width: 5rem;
+    width: 20rem;
+    text-align: center;
+}
+
+#icon {
+    margin-top: 0rem;
+    width: 130px;
+    max-width: none;
+}
+
+#weather-icon {
+    width: 250px;
+    height: 250px;
+}
+
+#compass {
+    margin-top: 0.3rem;
+    width: 25px;
+    height: 25px;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    html,
+    body {
+        height: 100%;
+        overflow-y: visible;
+    }
+    .title-content {
+        flex-direction: column;
+        padding: 1rem 4rem;
+    }
+    .main-content {
+        flex-direction: column;
+        padding: 0;
+        margin-top: 2rem;
+    }
+    .main-content > span {
+        flex-direction: column;
+        justify-content: space-evenly;
+        text-align: center;
+        font-size: 35px;
+    }
+    .bottom-content {
+        font-size: 25px;
+        margin-top: 4.5rem;
+        justify-content: space-around;
+        flex-direction: column;
+        font-size: 25px;
+    }
+    .bottom-text > span {
+        margin-bottom: 2rem;
+    }
+    .bubble-colors {
+        margin-left: 0;
+        justify-content: center;
+        margin-top: 4rem;
+    }
+    button {
+        width: 25px;
+        height: 20px;
+    }
+    #weather {
+        font-size: 40px;
+    }
+    #icon {
+        width: 100px;
+        height: auto;
+    }
+    #weather-icon {
+        width: 150px;
+        height: auto;
+    }
+    #compass {
+        margin-top: 0rem;
+    }
+}

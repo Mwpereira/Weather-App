@@ -32,7 +32,7 @@ function getTime() {
     if (minute < 10) {
         minute = '0' + minute.toString();
     }
-    document.getElementById('time').innerHTML = `Current Time: ${hour}:${minute} ${dt} (Location Based)`;
+    document.getElementById('time').innerHTML = `Current Time: ${hour}:${minute} ${dt}`;
 }
 
 //Get hour
@@ -99,7 +99,6 @@ function loadLocation() {
             }
         });
     });
-    setInterval(getTime, 1000);
 }
 
 document.getElementById('compass').addEventListener('click', (e) => {
@@ -118,25 +117,25 @@ function setLocation(city, state) {
 //Switch background colors
 document.getElementById('first-button').addEventListener('click', (e) => {
     e.preventDefault();
-    document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540)';
+    document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540) no-repeat';
     setTheme(1);
 });
 
 document.getElementById('second-button').addEventListener('click', (e) => {
     e.preventDefault();
-    document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#325d79, #9bd7d1, #efeeee, #f9a26c, #f26627)';
+    document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#325d79, #9bd7d1, #efeeee, #f9a26c, #f26627) no-repeat';
     setTheme(2);
 });
 
 document.getElementById('third-button').addEventListener('click', (e) => {
     e.preventDefault();
-    document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#475c7a, #685d79, #ab6c82, #d8737f, #fcbb6d)';
+    document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#475c7a, #685d79, #ab6c82, #d8737f, #fcbb6d) no-repeat';
     setTheme(3);
 });
 
 document.getElementById('fourth-button').addEventListener('click', (e) => {
     e.preventDefault();
-    document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#305f72, #568ea6, #f1d1b5, #f0b7a4, #f18c8e)';
+    document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#305f72, #568ea6, #f1d1b5, #f0b7a4, #f18c8e) no-repeat';
     setTheme(4);
 });
 
@@ -154,20 +153,20 @@ function loadTheme() {
         let body = document.getElementsByTagName('body')[0];
         switch (theme) {
             case '2':
-                body.style.background = 'linear-gradient(#325d79, #9bd7d1, #efeeee, #f9a26c, #f26627)';
+                body.style.background = 'linear-gradient(#325d79, #9bd7d1, #efeeee, #f9a26c, #f26627) no-repeat';
                 break;
             case '3':
-                body.style.background = 'linear-gradient(#475c7a, #685d79, #ab6c82, #d8737f, #fcbb6d)';
+                body.style.background = 'linear-gradient(#475c7a, #685d79, #ab6c82, #d8737f, #fcbb6d) no-repeat';
                 break;
             case '4':
-                body.style.background = 'linear-gradient(#305f72, #568ea6, #f1d1b5, #f0b7a4, #f18c8e)';
+                body.style.background = 'linear-gradient(#305f72, #568ea6, #f1d1b5, #f0b7a4, #f18c8e) no-repeat';
                 break;
             default:
-                body.style.background = 'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540)';
+                body.style.background = 'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540) no-repeat';
                 break;
         }
     } else {
-        document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540)';
+        document.getElementsByTagName('body')[0].style.background = 'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540) no-repeat';
         localStorage.setItem('theme', 1);
     }
 }
@@ -175,3 +174,7 @@ function loadTheme() {
 loadTheme();
 
 loadLocation();
+
+setInterval(loadLocation, 50000);
+
+setInterval(getTime, 1000);
