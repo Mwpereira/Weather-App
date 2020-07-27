@@ -69,25 +69,25 @@ function loadLocation() {
                     case 'Sunny':
                     case 'Clear':
                         if (getHour(data.timezone) <= '6' || getHour(data.timezone) >= '18') {
-                            document.getElementById('weather-icon').src = 'moon.gif';
+                            document.getElementById('weather-icon').src = './img/moon.gif';
                         } else {
-                            document.getElementById('weather-icon').src = 'sunny.png';
+                            document.getElementById('weather-icon').src = './img/sunny.png';
                         }
                         break;
                     case 'Thunderstorm':
-                        document.getElementById('weather-icon').src = 'thunderstorm.png';
+                        document.getElementById('weather-icon').src = './img/thunderstorm.png';
                         break;
                     case 'Clouds':
-                        document.getElementById('weather-icon').src = 'cloudy.png';
+                        document.getElementById('weather-icon').src = './img/cloudy.png';
                         break;
                     case 'Rain':
-                        document.getElementById('weather-icon').src = 'raining.png';
+                        document.getElementById('weather-icon').src = './img/raining.png';
                         break;
                     case 'Snow':
-                        document.getElementById('weather-icon').src = 'snowing.png';
+                        document.getElementById('weather-icon').src = './img/snowing.png';
                         break;
                     case 'Mist':
-                        document.getElementById('weather-icon').src = 'mist   .png';
+                        document.getElementById('weather-icon').src = './img/mist   .png';
                         break;
                 }
             } else {
@@ -95,7 +95,7 @@ function loadLocation() {
                 prediction = 'N/A';
                 document.getElementById('temperature').innerHTML = 'Temperature:  ' + temperature;
                 document.getElementById('prediction').innerHTML = 'Prediction:  ' + prediction;
-                document.getElementById('weather-icon').src = 'error.png';
+                document.getElementById('weather-icon').src = './img/error.png';
             }
         });
     });
