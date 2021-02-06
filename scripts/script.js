@@ -56,7 +56,7 @@ function loadWeather() {
         $('#location').html('Location:  ' + location);
         let temperature, prediction;
         fetch(
-            `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=1e77fb69d26c242a76402146e8484da8`
+            `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=1e77fb69d26c242a76402146e8484da8`
         ).then((response) => {
             response.json().then((data) => {
                 if (response.status != 404) {
