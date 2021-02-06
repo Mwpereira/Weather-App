@@ -55,6 +55,7 @@ function loadWeather() {
         location = localStorage.getItem('location');
         $('#location').html('Location:  ' + location);
         let temperature, prediction;
+        // Safe to store key with limit (free tier)
         fetch(
             `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=1e77fb69d26c242a76402146e8484da8`
         ).then((response) => {
@@ -147,23 +148,17 @@ function setTheme(theme) {
         case 'Purple':
             $('html').css(
                 'background',
-                'linear-gradient(-225deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%) no-repeat'
+                'linear-gradient(#5271c4 0%, #b19fff 48%, #aa76b8 100%) no-repeat'
             );
             $('body').css(
                 'background',
-                'linear-gradient(-225deg, #5271C4 0%, #B19FFF 48%, #ECA1FE 100%) no-repeat'
+                'linear-gradient(#5271c4 0%, #b19fff 48%, #aa76b8 100%) no-repeat'
             );
             localStorage.setItem('theme', 'Purple');
             break;
         case 'Pink':
-            $('html').css(
-                'background',
-                'linear-gradient(to top, #df89b5 0%, #bfd9fe 100%) no-repeat'
-            );
-            $('body').css(
-                'background',
-                'linear-gradient(to top, #df89b5 0%, #bfd9fe 100%) no-repeat'
-            );
+            $('html').css('background', 'linear-gradient(#df89b5 0%, #83a0c8 100%) no-repeat');
+            $('body').css('background', 'linear-gradient(#df89b5 0%, #83a0c8 100%) no-repeat');
             localStorage.setItem('theme', 'Pink');
             break;
         default:
