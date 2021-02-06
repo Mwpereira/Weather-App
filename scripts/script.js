@@ -21,7 +21,7 @@ function changeLocation() {
  * Retrieve time
  */
 function getTime() {
-    const date = new Date();
+    let date = new Date();
     let h = date.getHours();
     let m = date.getMinutes();
     let s = date.getSeconds();
@@ -60,6 +60,7 @@ function loadWeather() {
             `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=1e77fb69d26c242a76402146e8484da8`
         ).then((response) => {
             response.json().then((data) => {
+                console.log(data);
                 if (response.status != 404) {
                     localStorage.setItem('timezone', data.timezone);
                     temperature = data.main.temp;
@@ -96,7 +97,6 @@ function loadWeather() {
                             document.getElementById('weatherIcon').src = './assets/img/mist.png';
                             break;
                     }
-                    $('.field').addClass('is-success');
                 } else {
                     $('#weatherIcon').attr('src', './assets/img/error.png');
                     $('#temperature').innerHTML = 'Temperature:  N/A';
@@ -124,11 +124,6 @@ $('select').change(() => {
 
 function setTheme(theme) {
     switch (theme) {
-        case 'Dark':
-            $('html').css('background', '#1b1b26');
-            $('body').css('background', '#1b1b26');
-            localStorage.setItem('theme', 'Dark');
-            break;
         case 'Red':
             $('html').css(
                 'background',
@@ -161,10 +156,21 @@ function setTheme(theme) {
             $('body').css('background', 'linear-gradient(#df89b5 0%, #83a0c8 100%) no-repeat');
             localStorage.setItem('theme', 'Pink');
             break;
-        default:
+        case 'Dark':
             $('html').css('background', '#1b1b26');
             $('body').css('background', '#1b1b26');
             localStorage.setItem('theme', 'Dark');
+            break;
+        default:
+            $('html').css(
+                'background',
+                'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540) no-repeat'
+            );
+            $('body').css(
+                'background',
+                'linear-gradient(#2d142c, #510a32, #801336, #c72c41, #ee4540) no-repeat'
+            );
+            localStorage.setItem('theme', 'Red');
             break;
     }
 }
@@ -180,7 +186,23 @@ function loadTheme() {
     }
 }
 
+/**
+ * Load location
+ */
+function loadLocation() {
+    let location;
+    if (localStorage.getItem('location') != undefined) {
+        location = localStorage.getItem('location');
+    } else {
+        location = 'Toronto, Ontario';
+    }
+
+    $('.input').val(location);
+}
+
 loadTheme();
+
+loadLocation();
 
 loadWeather();
 
