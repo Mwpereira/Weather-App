@@ -1,47 +1,95 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="shortcut icon" href="./img/weather.png" />
-        <link rel="stylesheet" href="style.css" />
-        <script src="index.js" defer></script>
-        <title>Mwp Weather</title>
-    </head>
-    <body>
-        <div id="container">
-            <div class="title-content">
-                <div class="icon-column">
-                    <img id="icon" src="./img/weather.png" />
+
+<head>
+    <!---Required meta tags--->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta property="og:title" content="Weather App" />
+    <meta property="og:description" content="Live Weather Updates" />
+    <meta property="og:site_name" content="Weather App" />
+    <meta property="og:image" content="./assets/img/logo.png" />
+    <!---Bulma--->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/bulma-switch.min.css">
+    <!---CSS--->
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/all.min.js"
+        integrity="sha512-UwcC/iaz5ziHX7V6LjSKaXgCuRRqbTp1QHpbOJ4l1nw2/boCfZ2KlFIqBUA/uRVF0onbREnY9do8rM/uT/ilqw=="
+        crossorigin="anonymous"></script>
+    <!---jQuery--->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!---Website Properties--->
+    <title>Weather App</title>
+    <link rel="icon" href="./assets/icon/logo.ico" />
+</head>
+
+<body>
+    <!------------ Title Section ------------>
+    <div class="section pl-0 pr-0">
+        <div class="level-item">
+            <figure class="image is-64x64 mr-3">
+                <img src="./assets/img/logo.png">
+            </figure>
+            <h1 class="title has-text-light">Weather App</h1>
+        </div>
+    </div>
+    <!-- Weather Section -->
+    <div class="section has-text-centered pt-0">
+        <div class="columns is-centered">
+            <div class="column">
+                <div class="section pt-0">
+                    <figure class="image is-inline-block">
+                        <img id="weatherIcon" src="./assets/img/error.png" />
+                    </figure>
                 </div>
-                <div class="title-column">
-                    <h1 id="weather">Mwp Weather</h1>
+                <div class="section has-text-centered p-0 pb-6">
+                    <div class="columns">
+                        <div class="column is-4">
+                            <p class="is-size-3 is-size-5-tablet is-size-5-mobile" id="time">Current Time:
+                                N/A</p>
+                        </div>
+                        <div class="column is-4">
+                            <p class="is-size-3 is-size-5-tablet is-size-5-mobile" id="temperature">Temperature: N/A</p>
+                        </div>
+                        <div class="column is-4">
+                            <p class="is-size-3 is-size-5-tablet is-size-5-mobile" id="prediction">Prediction: N/A</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="weather-icon-image">
-                <img id="weather-icon" />
-            </div>
-            <div class="main-content">
-                <span>
-                    <p id="temperature">Temperature: 0°C</p>
-                    <p id="prediction">Predication: Rainy</p>
-                </span>
-            </div>
-            <div class="bottom-content">
-                <div class="bottom-text">
-                    <span>
-                        <p id="location">Location:</p>
-                        <img id="compass" src="./img/compass.png" />
-                    </span>
-                    <p id="time">Current Time:</p>
+                <div class="section has-text-centered">
+                    <div class="level">
+                        <div class="level-item">
+                            <div class="field ml-3">
+                                <div class="control has-icons-right">
+                                    <input class="input is-medium" type="text" placeholder="City, Province">
+                                    <span class="icon is-right">
+                                        <i class="far fa-compass"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="level-item">
+                            <div class="select is-medium">
+                                <select>
+                                    <option>Theme</option>
+                                    <option>Dark</option>
+                                    <option>Red</option>
+                                    <option>Blue</option>
+                                    <option>Purple</option>
+                                    <option>Pink</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="bubble-colors">
-                <button id="first-button"></button>
-                <button id="second-button"></button>
-                <button id="third-button"></button>
-                <button id="fourth-button"></button>
             </div>
         </div>
-    </body>
+    </div>
+    <script src="./scripts/script.js"></script>
+</body>
+
 </html>
