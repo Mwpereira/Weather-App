@@ -23,5 +23,5 @@ Open the index.html file and enjoy!
 
 ## 📷 Screenshots
 
-<img src="/public/screenshots/image0.PNG" width="300x50">
-<img src="/public/screenshots/image1.PNG" width="300x50">
+<img src="/build/screenshots/image0.PNG" width="650x50">
+<img src="/build/screenshots/image1.PNG" width="650x50">
