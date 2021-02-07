@@ -1,11 +1,16 @@
 /**
  * Set Location
  */
-$('.input').on('keyup', function (e) {
+$('.input').on('keyup', (e) => {
     if (e.key === 'Enter' || e.keyCode === 13) {
         setLocation($('.input').val());
         loadWeather();
     }
+});
+
+$('.input').focusout(() => {
+    setLocation($('.input').val());
+    loadWeather();
 });
 
 /**
@@ -22,13 +27,25 @@ function changeLocation() {
  */
 function getTime() {
     let date = new Date();
-    let h = date.getHours();
+    let h = getHour();
     let m = date.getMinutes();
     let s = date.getSeconds();
     let session = 'AM';
 
+    if (h < 0) {
+        h = 12 - h;
+    }
+
+    if (h == 12) {
+        session = 'PM';
+    }
+
     if (h == 0) {
         h = 12;
+    }
+
+    if (h > 23) {
+        h = h - 23;
     }
 
     if (h > 12) {
@@ -42,8 +59,14 @@ function getTime() {
 
     const time = h + ':' + m + ':' + s + ' ' + session;
     $('#time').html(`Current Time: ${time}`);
+}
 
-    setTimeout(getTime, 1000);
+//Get hour
+function getHour() {
+    const timezone = localStorage.getItem('timezone');
+    const d = new Date();
+    const n = d.getUTCHours() + parseInt(timezone);
+    return n;
 }
 
 /**
@@ -53,16 +76,20 @@ function loadWeather() {
     let location;
     if (localStorage.getItem('location') != undefined) {
         location = localStorage.getItem('location');
-        $('#location').html('Location:  ' + location);
-        let temperature, prediction;
-        // Safe to store key with limit (free tier)
-        fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=1e77fb69d26c242a76402146e8484da8`
-        ).then((response) => {
+    } else {
+        location = 'Toronto, Ontario';
+        localStorage.setItem('location', location);
+    }
+    $('#location').html('Location:  ' + location);
+    let temperature, prediction;
+    // Safe to store key with limit (free tier)
+    fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=1e77fb69d26c242a76402146e8484da8`
+    )
+        .then((response) => {
             response.json().then((data) => {
-                console.log(data);
                 if (response.status != 404) {
-                    localStorage.setItem('timezone', data.timezone);
+                    localStorage.setItem('timezone', data.timezone / 3600);
                     temperature = data.main.temp;
                     prediction = data.weather[0].main;
                     $('#temperature').html(
@@ -97,22 +124,16 @@ function loadWeather() {
                             document.getElementById('weatherIcon').src = './assets/img/mist.png';
                             break;
                     }
-                } else {
-                    $('#weatherIcon').attr('src', './assets/img/error.png');
-                    $('#temperature').innerHTML = 'Temperature:  N/A';
-                    $('#prediction').innerHTML = 'Prediction:  N/A';
-                    $('#location').html('Location:  ' + location);
+                    setInterval(getTime, 1000);
                 }
             });
+        })
+        .catch(() => {
+            $('#weatherIcon').attr('src', './assets/img/error.png');
+            $('#temperature').innerHTML = 'Temperature:  N/A';
+            $('#prediction').innerHTML = 'Prediction:  N/A';
+            $('#location').html('Location: N/A');
         });
-    }
-}
-
-/**
- * Set location in localStorage
- */
-function setLocation(location) {
-    localStorage.setItem('location', location);
 }
 
 /**
@@ -182,8 +203,15 @@ function loadTheme() {
     if (localStorage.getItem('theme') != undefined) {
         setTheme(localStorage.getItem('theme'));
     } else {
-        setTheme('Dark');
+        setTheme('Red');
     }
+}
+
+/**
+ * Set location in localStorage
+ */
+function setLocation(location) {
+    localStorage.setItem('location', location);
 }
 
 /**
@@ -207,5 +235,3 @@ loadLocation();
 loadWeather();
 
 setInterval(loadWeather, 600000);
-
-setInterval(getTime, 1000);
