@@ -32,24 +32,11 @@ function getTime() {
     let s = date.getSeconds();
     let session = 'AM';
 
-    if (h < 0) {
-        h = 12 - h;
-    }
-
     if (h == 12) {
         session = 'PM';
     }
 
-    if (h == 0) {
-        h = 12;
-    }
-
-    if (h > 23) {
-        h = h - 23;
-    }
-
     if (h > 12) {
-        h = h - 12;
         session = 'PM';
     }
 
@@ -65,8 +52,22 @@ function getTime() {
 function getHour() {
     const timezone = localStorage.getItem('timezone');
     const d = new Date();
-    const n = d.getUTCHours() + parseInt(timezone);
-    return n;
+    let h = d.getUTCHours() + parseInt(timezone);
+    if (h < 0) {
+        h = 12 - h;
+    }
+    if (h == 0) {
+        h = 12;
+    }
+
+    if (h > 23) {
+        h = h - 23;
+    }
+
+    if (h > 12) {
+        h = h - 12;
+    }
+    return h;
 }
 
 /**
@@ -99,7 +100,7 @@ function loadWeather() {
                     switch (prediction) {
                         case 'Sunny':
                         case 'Clear':
-                            if (getHour(data.timezone) <= '6' || getHour(data.timezone) >= '18') {
+                            if (getHour() <= 6 || getHour() >= '18') {
                                 document.getElementById('weatherIcon').src =
                                     './assets/img/moon.png';
                             } else {
