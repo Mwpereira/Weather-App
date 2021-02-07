@@ -101,7 +101,7 @@ function loadWeather() {
                         case 'Clear':
                             if (getHour(data.timezone) <= '6' || getHour(data.timezone) >= '18') {
                                 document.getElementById('weatherIcon').src =
-                                    './assets/img/moon.gif';
+                                    './assets/img/moon.png';
                             } else {
                                 document.getElementById('weatherIcon').src =
                                     './assets/img/sunny.png';
