@@ -30,15 +30,7 @@ function getTime() {
     let h = getHour();
     let m = date.getMinutes();
     let s = date.getSeconds();
-    let session = 'AM';
-
-    if (h == 12) {
-        session = 'PM';
-    }
-
-    if (h > 12) {
-        session = 'PM';
-    }
+    const session = getSession(h);
 
     h = h < 10 ? '0' + h : h;
     m = m < 10 ? '0' + m : m;
@@ -48,7 +40,25 @@ function getTime() {
     $('#time').html(`Current Time: ${time}`);
 }
 
-//Get hour
+/**
+ * Get Session
+ */
+function getSession() {
+    const timezone = localStorage.getItem('timezone');
+    const d = new Date();
+    const h = d.getUTCHours() + parseInt(timezone);
+    let s = 'AM';
+
+    if (h > 11 && h < 24) {
+        s = 'PM';
+    }
+
+    return s;
+}
+
+/**
+ * Get Hour
+ */
 function getHour() {
     const timezone = localStorage.getItem('timezone');
     const d = new Date();
@@ -61,7 +71,7 @@ function getHour() {
     }
 
     if (h > 23) {
-        h = h - 23;
+        h = h - 24;
     }
 
     if (h > 12) {
