@@ -110,7 +110,10 @@ function loadWeather() {
                     switch (prediction) {
                         case 'Sunny':
                         case 'Clear':
-                            if (getHour() <= 6 || getHour() >= '18') {
+                            if (
+                                (getHour() <= 6 && getSession() == 'AM') ||
+                                (getHour() >= '18' && getSession() == 'PM')
+                            ) {
                                 document.getElementById('weatherIcon').src =
                                     './assets/img/moon.png';
                             } else {
