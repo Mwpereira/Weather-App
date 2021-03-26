@@ -30,14 +30,14 @@ function getTime() {
     let h = getHour();
     let m = date.getMinutes();
     let s = date.getSeconds();
-    const session = getSession(h);
 
     h = h < 10 ? '0' + h : h;
     m = m < 10 ? '0' + m : m;
     s = s < 10 ? '0' + s : s;
 
-    const time = h + ':' + m + ':' + s + ' ' + session;
-    $('#time').html(`Current Time: ${time}`);
+    if (h == 00) h = 12;
+
+    $('#time').html(`Current Time: ${h}:${m}:${s} ${getSession(h)}`);
 }
 
 /**
