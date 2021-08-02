@@ -2,6 +2,8 @@
 
 A website app with a simplistic design to display weather info and time.
 
+[Live Demo](https://weather.mwpereira.ca)
+
 ## 📐 Project Setup
 
 ```
